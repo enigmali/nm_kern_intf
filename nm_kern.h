@@ -12,7 +12,7 @@ struct netmap_if {
 	const uint32_t	ni_version;
 	const uint32_t	ni_flags;
 
-	// #define NI_PRIV_MEM	0x01 ???
+#define NI_PRIV_MEM	0x01 
 	
 	const uint32_t	ni_tx_rings;
 	const uint32_t	ni_rx_rings;
@@ -23,7 +23,23 @@ struct netmap_if {
 	const ssize_t	rings_ofs[0];
 };
 
-struct nmreq {};
+struct nmreq {
+	char		nr_name[IF_NAME_SIZE];
+	uint32_t	nr_version;
+	uint32_t	nr_offset;
+	uint32_t	nr_memsize;
+	uint32_t	nr_tx_slots;
+	uint32_t	nr_rx_slots;
+	uint16_t	nr_tx_rings;
+	uint16_t	nr_rx_rings;
+
+	uint16_t	nr_ringid;
+
+#define	NETMAP_HW_RING		0x4000
+#define NETMAP_SW_RING		0x2000
+#define NETMAP_RING_MASK	0x0fff
+#define NETMAP_NO_TX_POLL	0x1000
+};
 
 struct timeval {
 	uint64_t	tv_sec;
@@ -43,7 +59,7 @@ struct nm_pkthdr {
 	uint32_t			len;
 	uint64_t			flags;
 
-	// #define NM_MORE_PKTS		1
+#define NM_MORE_PKTS	1
 	
 	struct nm_desc		*d;
 	struct netmap_slot	*slot;
