@@ -2,6 +2,9 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 
+
+#include "nm_kern.h"
+
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Enigma Li <lizhilong.enigma@gmail.com>");
 MODULE_DESCRIPTION("The Module to Operate Netmap in Kernel Space.");

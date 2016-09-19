@@ -35,10 +35,32 @@ struct nmreq {
 
 	uint16_t	nr_ringid;
 
-#define	NETMAP_HW_RING		0x4000
-#define NETMAP_SW_RING		0x2000
-#define NETMAP_RING_MASK	0x0fff
-#define NETMAP_NO_TX_POLL	0x1000
+#define	NETMAP_HW_RING			0x4000
+#define NETMAP_SW_RING			0x2000
+#define NETMAP_RING_MASK		0x0fff
+#define NETMAP_NO_TX_POLL		0x1000
+#define NETMAP_DO_RX_POLL		0x8000
+	uint16_t	nr_cmd;
+#define NETMAP_BDG_ATTACH		1
+#define NETMAP_BDG_DETACH		2
+#define NETMAP_BDG_REGOPS		3
+#define NETMAP_BDG_LIST			4
+#define NETMAP_BDG_VNET_HDR		5
+#define NETMAP_BDG_OFFSET		NETMAP_BDG_VNET_HDR
+#define NETMAP_BDG_NEWIF		6
+#define NETMAP_BDG_DELIF		7
+#define NETMAP_PT_HOST_CREATE	8
+#define NETMAP_PT_HOST_DELETE	9
+#define NETMAP_BDG_POLLING_ON	10
+#define NETMAP_BDG_POLLING_OFF	11
+#define NETMAP_VNET_HDR_GET		12
+	uint16_t	nr_arg1;
+#define NETMAP_BDG_HOST			1
+
+	uint16_t	nr_arg2;
+	uint32_t	nr_arg3;
+	uint32_t	nr_flags;
+	uint32_t	spare2[1];
 };
 
 struct timeval {
